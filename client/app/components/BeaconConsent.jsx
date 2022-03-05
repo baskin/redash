@@ -43,12 +43,12 @@ function BeaconConsent() {
         <Card
           title={
             <>
-              Would you be ok with sharing anonymous usage data with the Redash team?{" "}
+              Would you be ok with sharing anonymous usage data with the Insights (by Unicommerce) team?{" "}
               <HelpTrigger type="USAGE_DATA_SHARING" />
             </>
           }
           bordered={false}>
-          <Text>Help Redash improve by automatically sending anonymous usage data:</Text>
+          <Text>Help Insights (by Unicommerce) improve by automatically sending anonymous usage data:</Text>
           <div className="m-t-5">
             <ul>
               <li> Number of users, queries, dashboards, alerts, widgets and visualizations.</li>

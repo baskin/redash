@@ -41,7 +41,9 @@ function UserProfile({ userId, onError }) {
     };
   }, [userId, handleError]);
 
-  const canEdit = user && (currentUser.isAdmin || currentUser.id === user.id);
+  // disallow user to edit self unless admin
+  // const canEdit = user && (currentUser.isAdmin || currentUser.id === user.id);
+  const canEdit = user && currentUser.isAdmin;
   return (
     <React.Fragment>
       <EmailSettingsWarning featureName="invite emails" className="m-b-20" adminOnly />

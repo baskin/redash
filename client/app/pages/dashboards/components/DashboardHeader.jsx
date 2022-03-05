@@ -1,7 +1,8 @@
 import React from "react";
 import cx from "classnames";
 import PropTypes from "prop-types";
-import { map, includes } from "lodash";
+// import { map, includes } from "lodash";
+import { map } from "lodash";
 import Button from "antd/lib/button";
 import Dropdown from "antd/lib/dropdown";
 import Menu from "antd/lib/menu";
@@ -14,7 +15,7 @@ import PlainButton from "@/components/PlainButton";
 import { DashboardTagsControl } from "@/components/tags-control/TagsControl";
 import getTags from "@/services/getTags";
 import { clientConfig } from "@/services/auth";
-import { policy } from "@/services/policy";
+// import { policy } from "@/services/policy";
 import { durationHumanize } from "@/lib/utils";
 import { DashboardStatusEnum } from "../hooks/useDashboard";
 
@@ -63,18 +64,19 @@ DashboardPageTitle.propTypes = {
 };
 
 function RefreshButton({ dashboardConfiguration }) {
-  const { refreshRate, setRefreshRate, disableRefreshRate, refreshing, refreshDashboard } = dashboardConfiguration;
-  const allowedIntervals = policy.getDashboardRefreshIntervals();
-  const refreshRateOptions = clientConfig.dashboardRefreshIntervals;
-  const onRefreshRateSelected = ({ key }) => {
-    const parsedRefreshRate = parseFloat(key);
-    if (parsedRefreshRate) {
-      setRefreshRate(parsedRefreshRate);
-      refreshDashboard();
-    } else {
-      disableRefreshRate();
-    }
-  };
+//   const { refreshRate, setRefreshRate, disableRefreshRate, refreshing, refreshDashboard } = dashboardConfiguration;
+  const { refreshRate, refreshing, refreshDashboard } = dashboardConfiguration;
+//   const allowedIntervals = policy.getDashboardRefreshIntervals();
+//   const refreshRateOptions = clientConfig.dashboardRefreshIntervals;
+//   const onRefreshRateSelected = ({ key }) => {
+//     const parsedRefreshRate = parseFloat(key);
+//     if (parsedRefreshRate) {
+//       setRefreshRate(parsedRefreshRate);
+//       refreshDashboard();
+//     } else {
+//       disableRefreshRate();
+//     }
+//   };
   return (
     <Button.Group>
       <Tooltip title={refreshRate ? `Auto Refreshing every ${durationHumanize(refreshRate)}` : null}>
@@ -83,7 +85,7 @@ function RefreshButton({ dashboardConfiguration }) {
           {refreshRate ? durationHumanize(refreshRate) : "Refresh"}
         </Button>
       </Tooltip>
-      <Dropdown
+      {/* <Dropdown
         trigger={["click"]}
         placement="bottomRight"
         overlay={
@@ -100,7 +102,7 @@ function RefreshButton({ dashboardConfiguration }) {
           <i className="fa fa-angle-down" aria-hidden="true" />
           <span className="sr-only">Split button!</span>
         </Button>
-      </Dropdown>
+      </Dropdown> */}
     </Button.Group>
   );
 }

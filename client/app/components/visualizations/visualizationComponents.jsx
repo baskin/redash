@@ -7,6 +7,8 @@ import { clientConfig } from "@/services/auth";
 
 import countriesDataUrl from "@redash/viz/lib/visualizations/choropleth/maps/countries.geo.json";
 import usaDataUrl from "@redash/viz/lib/visualizations/choropleth/maps/usa-albers.geo.json";
+import indiaStatesDataUrl from "@redash/viz/lib/visualizations/choropleth/maps/india.states.geo.json";
+import indiaDistrictsDataUrl from "@redash/viz/lib/visualizations/choropleth/maps/india.districts.geo.json";
 import subdivJapanDataUrl from "@redash/viz/lib/visualizations/choropleth/maps/japan.prefectures.geo.json";
 
 function wrapComponentWithSettings(WrappedComponent) {
@@ -28,14 +30,36 @@ function wrapComponentWithSettings(WrappedComponent) {
           },
         },
         usa: {
-          name: "USA",
-          url: usaDataUrl,
+            name: "USA",
+            url: usaDataUrl,
+            fieldNames: {
+              name: "Name",
+              ns_code: "National Standard ANSI Code (8-character)",
+              geoid: "Geographic ID",
+              usps_abbrev: "USPS Abbreviation",
+              fips_code: "FIPS Code (2-character)",
+            },
+        },
+        // { "id": "Mizoram", "st_nm": "Mizoram", "st_code": "15", "st_iso_3166-2": "MZ" }
+        india_states: {
+            name: "India/States",
+            url: indiaStatesDataUrl,
+            fieldNames: {
+              st_name: "State name",
+              st_code: "Numeric state code",
+              'st_iso_3166-2': "2 digit state code in ISO-3166-2 format"
+            }
+        },
+        // { "district": "Aizawl", "dt_code": "261", "st_nm": "Mizoram", "st_iso_3166-2": "MZ", "st_code": "15", "year": "2011_c" }
+        india_districts: {
+          name: "India/Districts",
+          url: indiaDistrictsDataUrl,
           fieldNames: {
-            name: "Name",
-            ns_code: "National Standard ANSI Code (8-character)",
-            geoid: "Geographic ID",
-            usps_abbrev: "USPS Abbreviation",
-            fips_code: "FIPS Code (2-character)",
+            district: "District name",
+            dt_code: "Numeric district code",
+            st_name: "State Name",
+            st_code: "Numeric state code",
+            'st_iso_3166-2': "2 digit state code in ISO-3166-2 format"
           },
         },
         subdiv_japan: {
